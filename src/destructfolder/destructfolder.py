@@ -1,20 +1,17 @@
+from __future__ import annotations
 from abc import abstractmethod
 from pathlib import Path
 from copy import deepcopy
-from typing import List
-
-import numpy as np
 from tqdm import tqdm
 
 from destructfolder.path_util import getChildFiles, getChildFolders
-import destructfolder.opencv_util as opencv_util
-
+# import destructfolder.opencv_util as opencv_util
 
 class IFolder:
     def __init__(
         self,
         name: str = None,
-        childs: List["IFolder"] = [],
+        childs: list[IFolder] = [],
         key_for_path: str = None,
         key_for_files: str = None,
         key_for_folders: str = None,
@@ -49,7 +46,7 @@ class IContentFolder(IFolder):
     def __init__(
         self,
         name: str = None,
-        childs: List["IFolder"] = [],
+        childs: list[IFolder] = [],
         key_for_path: str = None,
         key_for_files: str = None,
         key_for_folders: str = None,
@@ -61,24 +58,12 @@ class IContentFolder(IFolder):
         self.show_progress = show_progress
 
     @abstractmethod
-    def getContents(self, paths: List[Path]):
+    def getContents(self, paths: list[Path]):
         pass
 
 
-class NpLoadTxtFolder(IContentFolder):
-    def getContents(self, paths: List[Path]):
-        result = {}
-        if len(paths) > 0:
-            if self.show_progress:
-                print(f"Loading NpLoadTxtFolder contents ({self.name}) ...")
-            for path in tqdm(paths) if self.show_progress else paths:
-                result[path.stem] = np.loadtxt(str(path))
-            if self.show_progress:
-                print()
-        return result
-
 class TxtFolder(IContentFolder):
-    def getContents(self, paths: List[Path]):
+    def getContents(self, paths: list[Path]):
         result = {}
         if len(paths) > 0:
             if self.show_progress:
@@ -91,33 +76,9 @@ class TxtFolder(IContentFolder):
                 print()
         return result
 
-class JpgFolder(IContentFolder):
-    def getContents(self, paths: List[Path]):
-        result = {}
-        if len(paths) > 0:
-            if self.show_progress:
-                print(f"Loading JpgFolder contents ({self.name}) ...")
-            for path in tqdm(paths) if self.show_progress else paths:
-                result[path.stem] = opencv_util.readRGBImage(str(path))
-            if self.show_progress:
-                print()
-        return result
 
 
-class NpyFolder(IContentFolder):
-    def getContents(self, paths: List[Path]):
-        result = {}
-        if len(paths) > 0:
-            if self.show_progress:
-                print(f"Loading NpyFolder contents ({self.name}) ...")
-            for path in tqdm(paths) if self.show_progress else paths:
-                result[path.stem] = np.load(str(path))
-            if self.show_progress:
-                print()
-        return result
-
-
-def buildFramework(rootPath: Path, folderStructure: List[IFolder]) -> None:
+def buildFramework(rootPath: Path, folderStructure: list[IFolder]) -> None:
     def dfs(path: Path, folder: IFolder):
         path = path / folder.name
         path.mkdir(exist_ok=True)
@@ -130,7 +91,7 @@ def buildFramework(rootPath: Path, folderStructure: List[IFolder]) -> None:
         dfs(rootPath, folder)
 
 
-def destructFolder(rootPath: Path, folderStructure: List[IFolder]) -> dict:
+def destructFolder(rootPath: Path, folderStructure: list[IFolder]) -> dict:
 
     resultDict = {}
 

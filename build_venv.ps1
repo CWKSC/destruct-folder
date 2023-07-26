@@ -3,16 +3,16 @@ python -m venv venv
 
 python -m pip install --upgrade pip
 
-pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-pip3 install numpy
-pip3 install opencv-contrib-python
-pip3 install tqdm
+# pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+# pip install numpy
+# pip install opencv-contrib-python
 
-pip3 install black
-pip3 install pytest
-pip3 install build twine
+pip install tqdm
+pip install black
+pip install pytest
+pip install build twine
 
-pip3 install -e .
+pip install -e .
 
 python -m build
 

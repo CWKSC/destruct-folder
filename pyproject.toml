@@ -1,6 +1,6 @@
 
 [build-system]
-requires      = ["setuptools>=61.0.0", "wheel"]
+requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -10,22 +10,16 @@ description = "A library for destructing folders content data like txt, image, n
 readme = "README.md"
 authors = [{ name = "CWKSC" }]
 license = { file = "LICENSE" }
-classifiers = [
-]
+classifiers = []
 keywords = ["destruct", "folder"]
-dependencies = [
-    "torch",
-    "torchvision",
-    "torchaudio",
-    "numpy",
-    "opencv-contrib-python",
-    "tqdm"
-]
-requires-python = ">=3.7,<=3.8"
+dependencies = ["tqdm"]
+requires-python = ">=3.9"
 
 [project.optional-dependencies]
 dev = ["black", "pytest"]
+opencv = ["opencv-contrib-python"]
+torch = ["torch", "torchvision", "torchaudio"]
+numpy = ["numpy"]
 
 [project.urls]
 Homepage = "https://github.com/cwksc/DestructFolder"
-

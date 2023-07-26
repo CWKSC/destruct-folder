@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./src/destructfolder"
-    ]
+    ],
+    "python.formatting.provider": "none"
 }
