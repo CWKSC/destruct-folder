@@ -1,6 +1,16 @@
 # destructfolder
 
-A library for destructing folders content for data like txt, image, npy
+Destruct folders and get data `txt`, `png`, `npy`
+
+> [!NOTE]
+> 
+> It is created when I am doing some data processing work
+>
+> I need to read some data from `.png`, `.txt`
+> 
+> Reading data from different folder is trouble, repeated, and hard to maintain
+>
+> So I make a library for destruct folder, read data, and store into dict 
 
 ## Exmaple:
 
