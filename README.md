@@ -12,6 +12,18 @@ Destruct folders and get data `txt`, `png`, `npy`
 >
 > So I make a library for destruct folder, read data, and store into dict 
 
+> [!NOTE]
+>
+> This is also my first time learning how to publish a python library
+>
+> https://pypi.org/project/destructfolder/
+>
+> In 2020, nowaday should have better way to publish
+>
+> Not longer maintain, just for fun
+>
+> If I restart this project, I will created a DSL for it or just use json 
+
 ## Exmaple:
 
 File structure:
